@@ -38,7 +38,7 @@ public class UserService {
         if(user == null)
             throw new NotFoundException("User Not Found for id="+userId);
         log.info("User Found, get department with id="+user.getDepartmentId());
-        Department department = restTemplate.getForObject("http://localhost:8080/departments/"+user.getDepartmentId(),Department.class);
+        Department department = restTemplate.getForObject("http://DEPARTMENT-SERVICE/departments/"+user.getDepartmentId(),Department.class);
         if(department == null)
             throw new NotFoundException("Department Not Found for id="+user.getDepartmentId());
         vo.setUser(user);
