@@ -34,7 +34,7 @@ public class UserService {
 
         UserVO vo = new UserVO();
         //User user = userRepository.getById(userId);
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findById(userId).orElse(null);
         if(user == null)
             throw new NotFoundException("User Not Found for id="+userId);
         log.info("User Found, get department with id="+user.getDepartmentId());
