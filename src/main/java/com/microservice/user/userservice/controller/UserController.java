@@ -1,5 +1,6 @@
 package com.microservice.user.userservice.controller;
 
+import com.microservice.user.userservice.VO.UserVO;
 import com.microservice.user.userservice.entity.User;
 import com.microservice.user.userservice.exceptions.NotFoundException;
 import com.microservice.user.userservice.service.UserService;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @Slf4j
 public class UserController {
 
@@ -22,7 +23,7 @@ public class UserController {
         return userService.save(user);
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable("id") Long id){
 
         Optional<User> optional = userService.findById(id);
@@ -35,6 +36,12 @@ public class UserController {
         return optional;
 
         //return userService.findById(id).orElseThrow(() -> new NotFoundException("user not found for id="+id));
+    }*/
+
+    @GetMapping("/{id}")
+    public UserVO getUserWithDepartment(@PathVariable("id") Long userId){
+        log.info("Get user by id ="+userId);
+        return userService.getUserWithDepartment(userId);
     }
 
 }
